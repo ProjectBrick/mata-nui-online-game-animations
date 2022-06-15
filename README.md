@@ -1,2 +1,3 @@
-# mata-nui-online-game-animations
-Mata Nui Online Game Animations
+# Mata Nui Online Game Animations
+
+The cutscene animations from Mata Nui Online Game.
