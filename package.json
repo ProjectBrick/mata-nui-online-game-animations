@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"appName": "Mata Nui Online Game Animations",
-	"appNameShort": "MNOG Animations",
+	"appDmgTitle": "MNOG Animations",
 	"appDomain": "io.github.projectbrick.MataNuiOnlineGameAnimations",
 	"version": "1.0.0",
 	"author": "Project Brick",
