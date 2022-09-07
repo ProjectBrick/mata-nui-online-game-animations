@@ -26,18 +26,9 @@ import {
 	versionShort,
 	distName
 } from './util/meta.mjs';
-import {
-	pngs2bmps,
-	readIco,
-	readIcns
-} from './util/image.mjs';
+import {pngs2bmps, readIco, readIcns} from './util/image.mjs';
 import {docs} from './util/doc.mjs';
-import {
-	makeZip,
-	makeTgz,
-	makeExe,
-	makeDmg
-} from './util/dist.mjs';
+import {makeZip, makeTgz, makeExe, makeDmg} from './util/dist.mjs';
 import {setFps} from './util/swf.mjs';
 
 // This was a Flash 4 game, and the maximum FPS in Flash Player 4 was 18.
