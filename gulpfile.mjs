@@ -29,19 +29,14 @@ import {
 import {pngs2bmps, readIco, readIcns} from './util/image.mjs';
 import {docs} from './util/doc.mjs';
 import {makeZip, makeTgz, makeExe, makeDmg} from './util/dist.mjs';
-import {setFps} from './util/swf.mjs';
-
-// This was a Flash 4 game, and the maximum FPS in Flash Player 4 was 18.
-// The FPS set in the SWF files is greater, leading to faster playback.
-// http://www.macromedia.com/support/flash/releasenotes/player/releasenotes_player_5.htm
-const correctFps = 18;
+import {flash4FpsCap, setFps} from './util/fps.mjs';
 
 async function * files() {
 	const ls = async d => (await fse.readdir(d)).sort()
 		.filter(s => /^[^.].*\.swf$/i.test(s));
 	for (const f of await ls('original/files')) {
 		const d = await fse.readFile(`original/files/${f}`);
-		setFps(d, correctFps);
+		setFps(d, flash4FpsCap);
 		yield [f, d];
 	}
 	for (const f of await ls('src/shared')) {
