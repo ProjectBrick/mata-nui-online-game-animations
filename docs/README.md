@@ -1,4 +1,4 @@
-# Mata Nui Online Game Animations -- README
+# Mata Nui Online Game Animations – README
 
 Once a paradise, Mata Nui has become a place of darkness and fear ruled by the deadly Makuta. Now six mighty heroes, the Toa, have come to gather Masks of Power and challenge Makuta. Watch the cutscene animations from Mata Nui Online Game.
 
