@@ -27,8 +27,9 @@ import {
 	distName
 } from './util/meta.mjs';
 import {docs} from './util/doc.mjs';
-import {isMac, codesign} from './util/mac.mjs';
-import {makeZip, makeTgz, makeExe, makeDmg} from './util/dist.mjs';
+import {zip, tgz} from './util/archive.mjs';
+import {isMac, codesign, dmg} from './util/mac/index.mjs';
+import {exe} from './util/windows/index.mjs';
 import {flash4FpsCap, setFps} from './util/fps.mjs';
 
 async function * resources() {
@@ -91,8 +92,8 @@ for (const [type, flat] of Object.entries({
 }
 
 for (const [type, make] of Object.entries({
-	'zip': makeZip,
-	'tgz': makeTgz
+	'zip': zip,
+	'tgz': tgz
 })) {
 	task[`dist:browser:${type}`] = async () => {
 		await make(`dist/${distName}-Browser.${type}`, 'build/browser');
@@ -135,10 +136,10 @@ for (const [type, pkg] of Object.entries({
 		await docs('docs', build);
 	};
 	task[`dist:windows-${type}:zip`] = async () => {
-		await makeZip(`dist/${distName}-Windows-${type}.zip`, build);
+		await zip(`dist/${distName}-Windows-${type}.zip`, build);
 	};
 	task[`dist:windows-${type}:exe`] = async () => {
-		await makeExe(
+		await exe(
 			`dist/${distName}-Windows-${type}.exe`,
 			/x86_64/.test(type) ? 'x64 arm64' : '',
 			appDomain,
@@ -214,10 +215,10 @@ for (const [type, pkg] of Object.entries({
 		await docs('docs', build);
 	};
 	task[`dist:mac-${type}:tgz`] = async () => {
-		await makeTgz(`dist/${distName}-Mac-${type}.tgz`, build);
+		await tgz(`dist/${distName}-Mac-${type}.tgz`, build);
 	};
 	task[`dist:mac-${type}:dmg`] = async () => {
-		await makeDmg(
+		await dmg(
 			`dist/${distName}-Mac-${type}.dmg`,
 			appDmgTitle,
 			'res/dmg-icon.icns',
@@ -256,7 +257,7 @@ for (const [type, pkg] of Object.entries({
 		await docs('docs', build);
 	};
 	task[`dist:linux-${type}:tgz`] = async () => {
-		await makeTgz(`dist/${distName}-Linux-${type}.tgz`, build);
+		await tgz(`dist/${distName}-Linux-${type}.tgz`, build);
 	};
 }
 
